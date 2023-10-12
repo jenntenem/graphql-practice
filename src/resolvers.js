@@ -41,6 +41,25 @@ const resolvers = {
       await axios.post(url, person);
       return person;
     },
+    updatePerson: async (root, args) => {
+      if (!args.name) return null; // name is required - Validate that name is not empty
+
+      const url = process.env.servicePersons;
+      let person = await axios
+        .get(url)
+        .then((response) => response.data)
+        .then((response) =>
+          response.find((person) => person.name === args.name)
+        );
+      if (!person) return null;
+      
+      return await axios
+        .put(`${url}/${person.id}`, {
+          ...person,
+          ...args,
+        })
+        .then((response) => response.data);
+    },
   },
 
   Person: {

@@ -43,6 +43,12 @@ const typeDefs = `
       street: String!
       city: String!
     ): Person
+    updatePerson(
+      name: String!
+      phone: String
+      street: String
+      city: String
+    ): Person
   }
 `;
 
