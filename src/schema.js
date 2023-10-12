@@ -23,6 +23,21 @@ const typeDefs = `
     personCount: Int!
     allPersons: [Person!]!
     findPerson(name: String!): Person
+    addPersonx(
+      name: String!
+      phone: String
+      street: String!
+      city: String!
+    ): Person
+  }
+
+  type Mutation {
+    addPerson(
+      name: String!
+      phone: String
+      street: String!
+      city: String!
+    ): Person
   }
 `;
 

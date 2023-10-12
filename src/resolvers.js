@@ -1,6 +1,7 @@
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
+import { v1 } from "uuid";
 
 const resolvers = {
   Query: {
@@ -19,6 +20,22 @@ const resolvers = {
       const url = process.env.servicePersons;
       const persons = await axios.get(url).then((response) => response.data);
       return persons.find((person) => person.name === name);
+    },
+
+    addPersonx: async (root, args) => {
+      const url = process.env.servicePersons;
+      const person = { ...args, id: v1() };
+      await axios.post(url, person);
+      return person;
+    },
+  },
+
+  Mutation: {
+    addPerson: async (root, args) => {
+      const url = process.env.servicePersons;
+      const person = { ...args, id: v1() };
+      await axios.post(url, person);
+      return person;
     },
   },
 
