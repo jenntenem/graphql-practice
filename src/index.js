@@ -6,6 +6,7 @@ import { graphqlHTTP } from "express-graphql";
 dotenv.config();
 
 // GraphQL-Server Schema
+import schema from "./schema/schema.js";
 import schemaPractice from "./practice/schema.js";
 
 const app = express();
@@ -17,6 +18,14 @@ app.use(
   graphqlHTTP({
     graphiql: true,
     schema: schemaPractice,
+  })
+);
+
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    graphiql: true,
+    schema,
   })
 );
 
