@@ -2,6 +2,11 @@ import { makeExecutableSchema } from "graphql-tools";
 import resolvers from "./resolvers.js";
 // A GraphQL schema is a collection of type definitions (hence "typeDefs")
 const typeDefs = `
+  enum YesNo {
+    YES
+    NO
+  }
+
   type Person {
     name: String!
     phone: String
@@ -21,7 +26,7 @@ const typeDefs = `
     hello: String
     greet(name: String!): String
     personCount: Int!
-    allPersons: [Person!]!
+    allPersons(active: YesNo): [Person!]!
     findPerson(name: String!): Person
     addPersonx(
       name: String!

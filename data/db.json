@@ -5,7 +5,8 @@
       "phone": "555-123-4567",
       "street": "123 Main St",
       "city": "Anytown",
-      "id": "83f9a4f2-690a-11ee-8c99-0242ac120002"
+      "id": "83f9a4f2-690a-11ee-8c99-0242ac120002",
+      "active": true
     },
     {
       "name": "Jane Smith",
@@ -19,6 +20,20 @@
       "street": "789 Oak St",
       "city": "Sometown",
       "id": "92ab5ed2-690a-11ee-8c99-0242ac120002"
+    },
+    {
+      "name": "JJ",
+      "phone": "0000000",
+      "street": "New Street",
+      "city": "Gye",
+      "id": "f03562f0-691e-11ee-8c5a-0bec3d9bf46d"
+    },
+    {
+      "name": "JJ1",
+      "street": "New Street",
+      "city": "Gye",
+      "id": "054b3970-6920-11ee-8f6d-853060897f18",
+      "active": true
     }
   ]
 }

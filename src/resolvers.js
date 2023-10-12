@@ -12,9 +12,13 @@ const resolvers = {
       const url = process.env.servicePersons;
       return axios.get(url).then((response) => response.data.length);
     },
-    allPersons: () => {
+    allPersons: async (root, { active }) => {
       const url = process.env.servicePersons;
-      return axios.get(url).then((response) => response.data);
+      const persons = await axios.get(url).then((response) => response.data);
+      if (!active) return persons;
+      return persons.filter((person) =>
+        active === "YES" ? person.active : !person.active
+      );
     },
     findPerson: async (root, { name }) => {
       const url = process.env.servicePersons;
