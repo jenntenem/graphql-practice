@@ -1,22 +1,22 @@
 import express from "express";
 import dotenv from "dotenv";
+import { graphqlHTTP } from "express-graphql";
+
+// Process env
 dotenv.config();
 
-import schema from "./schema.js";
-import { graphqlHTTP } from "express-graphql";
+// GraphQL-Server Schema
+import schemaPractice from "./practice/schema.js";
 
 const app = express();
 const port = process.env.indexPort ?? 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
+// GraphQL Server
 app.use(
-  "/graphql",
+  "/graphql-practice",
   graphqlHTTP({
     graphiql: true,
-    schema,
+    schema: schemaPractice,
   })
 );
 

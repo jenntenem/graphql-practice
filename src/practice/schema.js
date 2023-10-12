@@ -1,7 +1,8 @@
 import { makeExecutableSchema } from "graphql-tools";
+import { gql } from "apollo-server";
 import resolvers from "./resolvers.js";
 // A GraphQL schema is a collection of type definitions (hence "typeDefs")
-const typeDefs = `
+const typeDefs = gql`
   enum YesNo {
     YES
     NO
