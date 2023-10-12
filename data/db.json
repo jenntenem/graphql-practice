@@ -1,0 +1,24 @@
+{
+  "persons": [
+    {
+      "name": "John Doe",
+      "phone": "555-123-4567",
+      "street": "123 Main St",
+      "city": "Anytown",
+      "id": "83f9a4f2-690a-11ee-8c99-0242ac120002"
+    },
+    {
+      "name": "Jane Smith",
+      "street": "456 Elm St",
+      "city": "Otherville",
+      "id": "92ab5c48-690a-11ee-8c99-0242ac120002"
+    },
+    {
+      "name": "Bob Johnson",
+      "phone": "555-555-5555",
+      "street": "789 Oak St",
+      "city": "Sometown",
+      "id": "92ab5ed2-690a-11ee-8c99-0242ac120002"
+    }
+  ]
+}
