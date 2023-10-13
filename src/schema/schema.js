@@ -1,9 +1,11 @@
+import { gql } from "apollo-server";
 import { makeExecutableSchema } from "graphql-tools";
 
 // Module TypeDefs and Resolvers
 import { typeDefs, resolvers } from "./resolvers/index.resolver.js";
 
-const RootDefs = `
+// Root TypeDefs and Mutation
+const RootDefs = gql`
   type Query {
     _: String
   }
@@ -15,6 +17,6 @@ const RootDefs = `
 
 // Schema TypeDefs
 export default makeExecutableSchema({
-  typeDefs: [RootDefs, ...typeDefs],
+  typeDefs: [RootDefs, typeDefs],
   resolvers,
 });
