@@ -48,3 +48,4 @@ The practice is based on:
 - [Graphql, Curso Practico con Nodejs y Mongodb](https://www.youtube.com/watch?v=Wl8O6wW4FJU)
 - [GraphQL, @midudev](https://www.youtube.com/playlist?list=PL2i4CEznA8jWqp8nsonAjddiN4XctqIuh)
 - [GraphQL Modularizado en multiples archivos](https://www.youtube.com/watch?v=_YN_fs-fuaI)
+- [GraphQL Modules tutorial: How to modularize GraphQL schema](https://blog.logrocket.com/graphql-modules-tutorial-how-to-modularize-graphql-schema/)
