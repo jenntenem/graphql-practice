@@ -8,6 +8,7 @@ dotenv.config();
 // GraphQL-Server Schema
 import schema from "./schema/schema.js";
 import schemaPractice from "./practice/schema.js";
+import schemaModules from "./graphql/schema/schema.graphql.js";
 
 const app = express();
 const port = process.env.indexPort ?? 3000;
@@ -26,6 +27,14 @@ app.use(
   graphqlHTTP({
     graphiql: true,
     schema,
+  })
+);
+
+app.use(
+  "/graphql-modules",
+  graphqlHTTP({
+    graphiql: true,
+    schema: schemaModules,
   })
 );
 
