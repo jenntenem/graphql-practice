@@ -9,6 +9,7 @@ dotenv.config();
 import schema from "./schema/schema.js";
 import schemaPractice from "./practice/schema.js";
 import schemaModules from "./graphql/schema/schema.graphql.js";
+import schemaPizza from "./practice/pizza.js";
 
 const app = express();
 const port = process.env.indexPort ?? 3000;
@@ -35,6 +36,14 @@ app.use(
   graphqlHTTP({
     graphiql: true,
     schema: schemaModules,
+  })
+);
+
+app.use(
+  "/graphql-pizza",
+  graphqlHTTP({
+    graphiql: true,
+    schema: schemaPizza,
   })
 );
 
