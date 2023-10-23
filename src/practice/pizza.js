@@ -27,13 +27,45 @@ const schema = {
       UNAVAILABLE
     }
 
-    # Schema Type
-    type Pizza {
+    interface IPizza {
       id: Int!
       pizza: String!
       stock: Int!
-      toppings: [Topping!]
+      toppings: [Topping!]!
       status: PizzaStatus!
+    }
+
+    # Schema Type
+    type Pizza implements IPizza {
+      id: Int!
+      pizza: String!
+      stock: Int!
+      toppings: [Topping!]!
+      status: PizzaStatus!
+    }
+
+    type ChicagoPizza implements IPizza {
+      id: Int!
+      pizza: String!
+      stock: Int!
+      toppings: [Topping!]!
+      status: PizzaStatus!
+      dough: String! # additional field exclusively for ChicagoPizza
+    }
+
+    type DominoPizza implements IPizza {
+      id: Int!
+      pizza: String!
+      stock: Int!
+      toppings: [Topping!]!
+      status: PizzaStatus!
+      sauce: String! # additional field exclusively for DominoPizza
+    }
+
+    input PizzaInput {
+      pizza: String!
+      status: PizzaStatus!
+      stock: Int
     }
 
     type Topping {
@@ -53,6 +85,10 @@ const schema = {
     type Mutation {
       createPizza(pizza: String, toppings: [ToppingInput!]!): Pizza!
       updatePizza(id: Int!, pizza: String, toppings: [ToppingInput]): Pizza!
+      createDominoPizza(
+        pizza: PizzaInput!
+        toppings: [ToppingInput]
+      ): DominoPizza!
     }
   `,
   resolvers: {
@@ -108,6 +144,21 @@ const schema = {
 
         pizzas[index] = { id, toppings: toppingRecords, pizza };
         return pizzas[index];
+      },
+      createDominoPizza: (parent, args, context) => {
+        let { id } = pizzas.reduce((prev, curr) =>
+          prev.id > curr.id ? prev : curr
+        );
+        id = id + 1;
+
+        const { toppings, pizza } = args; // Extract the pizza object from the input argument
+
+        const toppingRecords = toppings?.map(({ id }) =>
+          pizzaToppings.find(({ id: pizzaToppingId }) => pizzaToppingId === id)
+        );
+        const data = { id, ...pizza, toppings: toppingRecords ?? [] };
+        pizzas.push(data);
+        return data;
       },
     },
   },
