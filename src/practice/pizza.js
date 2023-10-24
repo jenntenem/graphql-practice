@@ -77,8 +77,10 @@ const schema = {
       id: Int!
     }
 
+    union VariousPizza = Pizza | ChicagoPizza | DominoPizza
+
     type Query {
-      pizzas(pizza: String): [Pizza]
+      pizzas(pizza: String): [VariousPizza]
       pizza(id: Int): Pizza!
     }
 
@@ -92,6 +94,20 @@ const schema = {
     }
   `,
   resolvers: {
+    VariousPizza: {
+      __resolveType(obj, context, info) {
+        // if Pizza have a dough then it mean it is ChicagoPizza
+        if (obj.dough) {
+          return "ChicagoPizza";
+        } else if (obj.sauce) {
+          // if Pizza have a dough then it mean it is ChicagoPizza
+          return "DominoPizza";
+        } else {
+          return "Pizza";
+        }
+      },
+    },
+
     Query: {
       pizzas: (parent, args, context) => {
         const { name } = args;
